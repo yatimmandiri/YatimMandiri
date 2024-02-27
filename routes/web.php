@@ -1,6 +1,14 @@
 <?php
 
+use App\Http\Controllers\Api\V1\MenuController as V1MenuController;
+use App\Http\Controllers\Api\V1\PermissionController as V1PermissionController;
+use App\Http\Controllers\Api\V1\RoleController as V1RoleController;
+use App\Http\Controllers\Api\V1\UserController as V1UserController;
 use App\Http\Controllers\Auth\SocialiteController;
+use App\Http\Controllers\Core\PermissionController;
+use App\Http\Controllers\Core\RoleController;
+use App\Http\Controllers\Core\UserController;
+use App\Http\Controllers\Core\MenuController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
@@ -28,4 +36,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::prefix('core')->group(function () {
+        Route::resource('permissions', PermissionController::class);
+        Route::resource('roles', RoleController::class);
+        Route::resource('users', UserController::class);
+        Route::resource('menus', MenuController::class);
+    });
+
+    Route::prefix('apis')->group(function () {
+        Route::resource('permissions', V1PermissionController::class);
+        Route::resource('roles', V1RoleController::class);
+        Route::resource('users', V1UserController::class);
+        Route::resource('menus', V1MenuController::class);
+    });
 });
