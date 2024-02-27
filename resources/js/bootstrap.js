@@ -6,6 +6,7 @@ import Select2 from "select2";
 import Swal from "sweetalert2";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import moment from "moment";
+import bsCustomFileInput from "bs-custom-file-input";
 import "bootstrap";
 import "datatables.net-bs4";
 import "datatables.net-buttons-bs4";
@@ -23,6 +24,9 @@ window.Popper = Popper;
 
 // JQuery
 window.$ = window.jQuery = jQuery;
+
+// bsCustomFileInput
+window.bsCustomFileInput = bsCustomFileInput;
 
 // Jquery CSRF
 jQuery.ajaxSetup({

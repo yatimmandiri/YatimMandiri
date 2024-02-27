@@ -21,7 +21,10 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="categories_featureimage" class="mb-1">Feature Image</label>
-                        <input type="file" name="categories_featureimage" placeholder="Feature Image" class="form-control" id="categories_featureimage">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="categories_featureimage" id="categories_featureimage">
+                            <label class="custom-file-label" for="categories_featureimage">Choose file</label>
+                        </div>
                     </div>
                     <div class="form-group col-md-12">
                         <label for="categories_description" class="mb-1">Description</label>
