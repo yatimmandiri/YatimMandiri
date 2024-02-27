@@ -17,7 +17,10 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="categories_icon" class="mb-1">Icon</label>
-                        <input type="file" name="categories_icon" placeholder="Icon" class="form-control" id="categories_icon">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="categories_icon" id="categories_icon">
+                            <label class="custom-file-label" for="categories_icon">Choose file</label>
+                        </div>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="categories_featureimage" class="mb-1">Feature Image</label>
@@ -46,6 +49,8 @@
 
 <script type="module">
     $(document).ready(function() {
+        bsCustomFileInput.init();
+
         $('#categories_name').val('{{ $category->categories_name }}')
 
         setDataEditors({
