@@ -2,11 +2,11 @@
 
 namespace App\Http\Resources\Collection;
 
-use App\Http\Resources\Resource\MenuResource;
+use App\Http\Resources\Resource\SliderResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class MenuCollection extends ResourceCollection
+class SliderCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -16,7 +16,7 @@ class MenuCollection extends ResourceCollection
     public function toArray(Request $request): array
     {
         return [
-            'data' => MenuResource::collection($this->collection),
+            'data' => SliderResource::collection($this->collection),
             'pagination' => [
                 'current_page' => $this->currentPage(),
                 'first_page_url' =>  $this->getOptions()['path'] . '?' . $this->getOptions()['pageName'] . '=1',
