@@ -28,6 +28,6 @@ class PermissionCollection extends ResourceCollection
                 'total' =>  $this->total(),
                 'path' =>  $this->getOptions()['path'],
             ],
-        ];;
+        ];
     }
 }
