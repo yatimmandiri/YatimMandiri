@@ -15,6 +15,7 @@ class SliderResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'slider_name' => $this->slider_name,
             'slider_link' => $this->slider_link,
             'slider_group' => $this->slider_group,
