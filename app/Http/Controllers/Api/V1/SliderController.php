@@ -57,6 +57,7 @@ class SliderController extends Controller
     public function show(Slider $slider)
     {
         $sliderResource = SliderResource::make($slider);
+
         return $this->sendResponse($sliderResource, 'Get Data Successfully');
     }
 
