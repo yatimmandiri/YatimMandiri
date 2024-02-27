@@ -81,6 +81,10 @@ Route::middleware('auth')->group(function () {
         Route::resource('rekenings', RekeningController::class);
     });
 
+    Route::prefix('report')->group(function () {
+        Route::get('donatur', [UserController::class, 'donaturs'])->name('users.donatur');
+    });
+
     Route::prefix('moota')->group(function () {
         Route::get('rekenings', [SettingsController::class, 'rekening'])->name('moota.rekening');
     });

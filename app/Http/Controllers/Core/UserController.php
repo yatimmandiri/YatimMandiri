@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Core;
 
+use App\DataTables\DonaturDataTable;
 use App\DataTables\UserDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -77,5 +78,11 @@ class UserController extends Controller
     {
         $user->delete();
         return $this->sendResponse([], 'Delete Data Successfully');
+    }
+
+    public function donaturs(DonaturDataTable $datatables)
+    {
+        $data['pageTitle'] = 'Donatur List';
+        return $datatables->render('reports.donatur', $data);
     }
 }
