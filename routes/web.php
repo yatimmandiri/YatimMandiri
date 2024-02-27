@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\CategoryController as V1CategoryController;
 use App\Http\Controllers\Api\V1\MenuController as V1MenuController;
 use App\Http\Controllers\Api\V1\PermissionController as V1PermissionController;
 use App\Http\Controllers\Api\V1\RoleController as V1RoleController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Core\RoleController;
 use App\Http\Controllers\Core\UserController;
 use App\Http\Controllers\Core\MenuController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Master\CategoryController;
 use App\Http\Controllers\Master\SliderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +41,19 @@ Route::middleware('auth')->group(function () {
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
 
+    Route::prefix('apis')->group(function () {
+        Route::resource('permissions', V1PermissionController::class);
+        Route::resource('roles', V1RoleController::class);
+        Route::resource('users', V1UserController::class);
+        Route::resource('menus', V1MenuController::class);
+        Route::resource('sliders', V1SliderController::class);
+
+        Route::put('categories/populer/{category}', [V1CategoryController::class, 'populer'])->name('categories.populer');
+        Route::put('categories/status/{category}', [V1CategoryController::class, 'status'])->name('categories.status');
+        Route::put('categories/restore/{category}', [V1CategoryController::class, 'restore'])->name('categories.restore');
+        Route::resource('categories', V1CategoryController::class);
+    });
+
     Route::prefix('core')->group(function () {
         Route::resource('permissions', PermissionController::class);
         Route::resource('roles', RoleController::class);
@@ -48,13 +63,6 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('master')->group(function () {
         Route::resource('sliders', SliderController::class);
-    });
-
-    Route::prefix('apis')->group(function () {
-        Route::resource('permissions', V1PermissionController::class);
-        Route::resource('roles', V1RoleController::class);
-        Route::resource('users', V1UserController::class);
-        Route::resource('menus', V1MenuController::class);
-        Route::resource('sliders', V1SliderController::class);
+        Route::resource('categories', CategoryController::class);
     });
 });
