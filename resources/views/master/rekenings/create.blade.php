@@ -40,7 +40,10 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="rekening_icon" class="mb-1">Icon</label>
-                        <input type="file" name="rekening_icon" placeholder="Icon" class="form-control" id="rekening_icon">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="rekening_icon" id="rekening_icon">
+                            <label class="custom-file-label" for="rekening_icon">Choose file</label>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -55,6 +58,8 @@
 <script type="module">
     $(document).ready(function() {
         $('#modalCreateRekening').on('show.bs.modal', function() {
+            bsCustomFileInput.init();
+
             setDataSelect({
                 tagid: '#rekening_provider',
                 data: [{
@@ -63,6 +68,9 @@
                 }, {
                     id: 'Moota',
                     text: 'Moota',
+                }, {
+                    id: 'Dana',
+                    text: 'Dana',
                 }],
                 placeholder: 'Select Provider',
                 modalid: '#modalCreateRekening'
@@ -92,6 +100,7 @@
 
             $('#rekening_provider').on('change', function(e) {
                 let val = $(this).val()
+                let channel;
 
                 $('#rekening_token').removeAttr('disabled')
 
@@ -112,9 +121,22 @@
                             })
                         })
                         break;
+                    case 'Dana':
+                        channel = [{
+                            'id': 'dana',
+                            'text': 'Dana Virtual Account'
+                        }, ]
+
+                        $('#rekening_token').empty().select2({
+                            theme: 'bootstrap-5',
+                            placeholder: 'Select Channel',
+                            data: channel,
+                        })
+
+                        break;
 
                     default:
-                        const channel = [{
+                        channel = [{
                                 'id': 'bca',
                                 'text': 'BCA Virtual Account'
                             },

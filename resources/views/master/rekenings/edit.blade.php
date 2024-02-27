@@ -40,7 +40,10 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="rekening_icon" class="mb-1">Icon</label>
-                        <input type="file" name="rekening_icon" placeholder="Icon" class="form-control" id="e_rekening_icon">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="rekening_icon" id="e_rekening_icon">
+                            <label class="custom-file-label" for="rekening_icon">Choose file</label>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -55,129 +58,10 @@
 <script type="module">
     $(document).ready(function() {
         $('#modalUpdateRekening').on('show.bs.modal', function(e) {
+            bsCustomFileInput.init();
+            let channel;
+
             let id = $(e.relatedTarget).data('id');
-
-            // getRekenings({
-            //     id: id
-            // })
-
-            // setDataSelect({
-            //     tagid: '#e_rekening_provider',
-            //     data: [{
-            //         id: 'Midtrans',
-            //         text: 'Midtrans',
-            //     }, {
-            //         id: 'Moota',
-            //         text: 'Moota',
-            //     }],
-            //     dataSelected: rekenings.rekening_provider,
-            //     placeholder: 'Select Provider',
-            //     modalid: '#modalUpdateRekening'
-            // })
-
-            // setDataSelect({
-            //     tagid: '#e_rekening_group',
-            //     data: [{
-            //             id: 'bank_transfer',
-            //             text: 'Bank Transfer',
-            //         }, {
-            //             id: 'e_money',
-            //             text: 'E-Money',
-            //         },
-            //         {
-            //             id: 'convenience_store',
-            //             text: 'Convenience Store',
-            //         },
-            //         {
-            //             id: 'cardless_credit',
-            //             text: 'Cardless Credit',
-            //         }
-            //     ],
-            //     dataSelected: rekenings.rekening_group,
-            //     placeholder: 'Select Group',
-            //     modalid: '#modalUpdateRekening'
-            // })
-
-            // const channel = [{
-            //         'id': 'bca',
-            //         'text': 'BCA Virtual Account'
-            //     },
-            //     {
-            //         'id': 'bni',
-            //         'text': 'BNI Virtual Account'
-            //     },
-            //     {
-            //         'id': 'bri',
-            //         'text': 'BRI Virtual Account'
-            //     },
-            //     {
-            //         'id': 'echannel',
-            //         'text': 'Mandiri Bill Payment'
-            //     },
-            //     {
-            //         'id': 'permata',
-            //         'text': 'Permata Virtual Account'
-            //     },
-            //     {
-            //         'id': 'gopay',
-            //         'text': 'Gopay'
-            //     },
-            //     {
-            //         'id': 'shopeepay',
-            //         'text': 'ShopeePay'
-            //     },
-            // ]
-
-            // switch (rekenings.rekening_provider) {
-            //     case 'Moota':
-            //         getMootaRekening()
-
-            //         $('#e_rekening_token').empty().select2({
-            //             theme: 'bootstrap-5',
-            //             placeholder: 'Select Channel',
-            //             data: dataMootaRekening,
-            //         }).val(rekenings.rekening_token).trigger('change')
-
-            //         break;
-            //     default:
-            //         $('#e_rekening_token').empty().select2({
-            //             theme: 'bootstrap-5',
-            //             placeholder: 'Select Channel',
-            //             data: channel,
-            //         }).val(rekenings.rekening_token).trigger('change')
-
-            //         break;
-            // }
-
-            // $('#e_rekening_provider').on('change', function(e) {
-            //     let val = $(this).val()
-
-            //     switch (val) {
-            //         case 'Moota':
-            //             getMootaRekenings()
-
-            //             $('#e_rekening_token').empty().select2({
-            //                 theme: 'bootstrap-5',
-            //                 placeholder: 'Select Channel',
-            //                 data: mootaRekeningList,
-            //             }).val(rekenings.rekening_token).trigger('change')
-
-            //             break;
-            //         default:
-
-            //             $('#e_rekening_token').empty().select2({
-            //                 theme: 'bootstrap-5',
-            //                 placeholder: 'Select Channel',
-            //                 data: channel,
-            //             }).val(rekenings.rekening_token).trigger('change')
-
-            //             break;
-            //     }
-            // })
-
-            // setInputValue('#e_rekening_name', rekenings.rekening_name)
-            // setInputValue('#e_rekening_bank', rekenings.rekening_bank)
-            // setInputValue('#e_rekening_number', rekenings.rekening_number)
 
             ajaxRequest({
                 url: `/apis/rekenings/${id}`,
@@ -194,6 +78,9 @@
                     }, {
                         id: 'Moota',
                         text: 'Moota',
+                    }, {
+                        id: 'Dana',
+                        text: 'Dana',
                     }],
                     dataSelected: rekenings.data.rekening_provider,
                     placeholder: 'Select Provider',
@@ -223,37 +110,7 @@
                     modalid: '#modalUpdateRekening'
                 })
 
-                const channel = [{
-                        'id': 'bca',
-                        'text': 'BCA Virtual Account'
-                    },
-                    {
-                        'id': 'bni',
-                        'text': 'BNI Virtual Account'
-                    },
-                    {
-                        'id': 'bri',
-                        'text': 'BRI Virtual Account'
-                    },
-                    {
-                        'id': 'echannel',
-                        'text': 'Mandiri Bill Payment'
-                    },
-                    {
-                        'id': 'permata',
-                        'text': 'Permata Virtual Account'
-                    },
-                    {
-                        'id': 'gopay',
-                        'text': 'Gopay'
-                    },
-                    {
-                        'id': 'shopeepay',
-                        'text': 'ShopeePay'
-                    },
-                ]
-
-                switch (rekenings.rekening_provider) {
+                switch (rekenings.data.rekening_provider) {
                     case 'Moota':
                         ajaxRequest({
                             url: `/moota/rekenings`,
@@ -270,7 +127,50 @@
                             }).val(rekenings.data.rekening_token).trigger('change')
                         })
                         break;
+                    case 'Dana':
+                        channel = [{
+                            'id': 'dana',
+                            'text': 'Dana Virtual Account'
+                        }, ]
+
+                        $('#e_rekening_token').empty().select2({
+                            theme: 'bootstrap-5',
+                            placeholder: 'Select Channel',
+                            data: channel,
+                        }).val(rekenings.data.rekening_token).trigger('change')
+
+                        break;
                     default:
+                        channel = [{
+                                'id': 'bca',
+                                'text': 'BCA Virtual Account'
+                            },
+                            {
+                                'id': 'bni',
+                                'text': 'BNI Virtual Account'
+                            },
+                            {
+                                'id': 'bri',
+                                'text': 'BRI Virtual Account'
+                            },
+                            {
+                                'id': 'echannel',
+                                'text': 'Mandiri Bill Payment'
+                            },
+                            {
+                                'id': 'permata',
+                                'text': 'Permata Virtual Account'
+                            },
+                            {
+                                'id': 'gopay',
+                                'text': 'Gopay'
+                            },
+                            {
+                                'id': 'shopeepay',
+                                'text': 'ShopeePay'
+                            },
+                        ]
+
                         $('#e_rekening_token').empty().select2({
                             theme: 'bootstrap-5',
                             placeholder: 'Select Channel',
@@ -301,18 +201,69 @@
                             })
 
                             break;
-                        default:
+                        case 'Dana':
+                            channel = [{
+                                'id': 'dana',
+                                'text': 'Dana Virtual Account'
+                            }, ]
 
                             $('#e_rekening_token').empty().select2({
                                 theme: 'bootstrap-5',
                                 placeholder: 'Select Channel',
                                 data: channel,
-                            }).val(rekenings.rekening_token).trigger('change')
+                            }).val(rekenings.data.rekening_token).trigger('change')
+
+                            break;
+                        default:
+                            channel = [{
+                                    'id': 'bca',
+                                    'text': 'BCA Virtual Account'
+                                },
+                                {
+                                    'id': 'bni',
+                                    'text': 'BNI Virtual Account'
+                                },
+                                {
+                                    'id': 'bri',
+                                    'text': 'BRI Virtual Account'
+                                },
+                                {
+                                    'id': 'echannel',
+                                    'text': 'Mandiri Bill Payment'
+                                },
+                                {
+                                    'id': 'permata',
+                                    'text': 'Permata Virtual Account'
+                                },
+                                {
+                                    'id': 'gopay',
+                                    'text': 'Gopay'
+                                },
+                                {
+                                    'id': 'shopeepay',
+                                    'text': 'ShopeePay'
+                                },
+                            ]
+
+                            $('#e_rekening_token').empty().select2({
+                                theme: 'bootstrap-5',
+                                placeholder: 'Select Channel',
+                                data: channel,
+                            }).val(rekenings.data.rekening_token).trigger('change')
 
                             break;
                     }
                 })
             })
+
+            // ajaxRequest({
+            //     url: `/apis/rekenings/${id}`,
+            // }).done((rekenings) => {
+
+
+
+            //     
+            // })
 
             $('#formRekeningUpdate').ajaxForm({
                 url: `/master/rekenings/${id}`,

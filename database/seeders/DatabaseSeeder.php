@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
             // MenuSeeder::class,
             // SliderSeeder::class,
             // CategorySeeder::class,
-            FaqSeeder::class,
+            // FaqSeeder::class,
+            RekeningSeeder::class,
         ]);
     }
 }
