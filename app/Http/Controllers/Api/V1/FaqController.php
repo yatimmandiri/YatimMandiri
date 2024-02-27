@@ -85,4 +85,26 @@ class FaqController extends Controller
     {
         //
     }
+
+    public function restore($id)
+    {
+        Faq::withTrashed()->find($id)->restore();
+        return $this->sendResponse([], 'Restore Data Successfully');
+    }
+
+    public function status(Faq $faq)
+    {
+        $faqs = Faq::find($faq->id);
+
+        if ($faqs->faq_status == 'Y') {
+            $faqs->faq_status = 'N';
+        } else {
+            $faqs->faq_status = 'Y';
+        }
+
+        $faqs->save();
+        $faqsResource = FaqResource::make($faq);
+
+        return $this->sendResponse($faqsResource, 'Update Status Successfully');
+    }
 }
