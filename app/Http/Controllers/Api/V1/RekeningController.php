@@ -21,6 +21,12 @@ class RekeningController extends Controller
                 $query->orWhere('rekening_bank', 'LIKE', '%' . $request->search . '%');
                 $query->orWhere('rekening_number', 'LIKE', '%' . $request->search . '%');
             })
+            ->when($request->provider, function ($query) use ($request) {
+                $query->where('rekening_provider', $request->provider);
+            })
+            ->when($request->group, function ($query) use ($request) {
+                $query->where('rekening_group', $request->group);
+            })
             ->when($request->status, function ($query) use ($request) {
                 $query->where('rekening_status', $request->status);
             });
