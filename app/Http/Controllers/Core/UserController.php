@@ -63,6 +63,7 @@ class UserController extends Controller
     {
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->handphone = $request->handphone;
         $user->syncRoles($request->roles);
         $user->save();
 

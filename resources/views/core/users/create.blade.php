@@ -20,6 +20,10 @@
                         <input type="email" name="email" placeholder="Email" class="form-control" id="email">
                     </div>
                     <div class="form-group col-md-6">
+                        <label for="handphone" class="mb-1">Handphone</label>
+                        <input type="number" name="handphone" placeholder="Handphone" class="form-control" id="handphone">
+                    </div>
+                    <div class="form-group col-md-6">
                         <label for="password" class="mb-1">Password</label>
                         <input type="password" name="password" placeholder="Password" class="form-control" id="password" autocomplete="true">
                     </div>
