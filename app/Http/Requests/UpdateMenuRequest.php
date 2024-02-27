@@ -11,7 +11,7 @@ class UpdateMenuRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateMenuRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'menu_name' => ['required', 'string'],
+            'menu_icon' => ['required', 'string'],
+            'menu_link' => ['required', 'string'],
+            'menu_parent' => ['required', 'string'],
         ];
     }
 }
