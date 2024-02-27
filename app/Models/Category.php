@@ -21,4 +21,9 @@ class Category extends Model
         'categories_populer',
         'categories_status',
     ];
+
+    public function faq()
+    {
+        return $this->hasMany(Faq::class, 'categories_id');
+    }
 }

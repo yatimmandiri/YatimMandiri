@@ -23,4 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('v1')->group(function () {
     Route::resource('sliders', SliderController::class);
     Route::resource('categories', CategoryController::class);
+    Route::resource('faqs', CategoryController::class);
 });

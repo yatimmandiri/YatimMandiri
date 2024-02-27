@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\CategoryController as V1CategoryController;
+use App\Http\Controllers\Api\V1\FaqController as V1FaqController;
 use App\Http\Controllers\Api\V1\MenuController as V1MenuController;
 use App\Http\Controllers\Api\V1\PermissionController as V1PermissionController;
 use App\Http\Controllers\Api\V1\RoleController as V1RoleController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Core\UserController;
 use App\Http\Controllers\Core\MenuController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Master\CategoryController;
+use App\Http\Controllers\Master\FaqController;
 use App\Http\Controllers\Master\SliderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
@@ -52,6 +54,8 @@ Route::middleware('auth')->group(function () {
         Route::put('categories/status/{category}', [V1CategoryController::class, 'status'])->name('categories.status');
         Route::put('categories/restore/{category}', [V1CategoryController::class, 'restore'])->name('categories.restore');
         Route::resource('categories', V1CategoryController::class);
+
+        Route::resource('faqs', V1FaqController::class);
     });
 
     Route::prefix('core')->group(function () {
@@ -64,5 +68,6 @@ Route::middleware('auth')->group(function () {
     Route::prefix('master')->group(function () {
         Route::resource('sliders', SliderController::class);
         Route::resource('categories', CategoryController::class);
+        Route::resource('faqs', FaqController::class);
     });
 });

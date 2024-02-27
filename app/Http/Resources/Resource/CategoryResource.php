@@ -23,10 +23,10 @@ class CategoryResource extends JsonResource
             'categories_description' => $this->categories_description,
             'categories_status' => $this->categories_status,
             'categories_populer' => $this->categories_populer,
-            'categories_icons' => $this->categories_icon,
-            'categories_featureimage' => $this->categories_featureimage,
+            'categories_icons' => $this->categories_icon ? env('APP_STORAGE_URL') . $this->categories_icon : null,
+            'categories_featureimage' => $this->categories_featureimage ? env('APP_STORAGE_URL') . $this->categories_featureimage : null,
             'relationship' => [
-                // 'faqs' => $this->faqs,
+                'faqs' => $this->faqs,
                 // 'campaigns' => $this->campaigns,
             ],
             'created_at' => $this->created_at,
