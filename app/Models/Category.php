@@ -22,12 +22,12 @@ class Category extends Model
         'categories_status',
     ];
 
-    public function faq()
+    public function faqs()
     {
         return $this->hasMany(Faq::class, 'categories_id');
     }
 
-    public function campaign()
+    public function campaigns()
     {
         return $this->hasMany(Campaign::class, 'categories_id');
     }
