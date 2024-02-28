@@ -650,40 +650,6 @@ datatables.net-buttons@3.0.0:
     datatables.net ">=2.0.0"
     jquery ">=1.7"
 
-datatables.net-colreorder-bs4@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/datatables.net-colreorder-bs4/-/datatables.net-colreorder-bs4-2.0.0.tgz#51f7c5337bba0d9e1fe60c9189f8edb516bc3cbd"
-  integrity sha512-cF0EBmhVwEKqPbMlXVaPi+2NTl3OHpxz4jK++wD8cuP5KVb0MLU530lvsfOns2jMRdHQR/raZZquFsOKn/bCAw==
-  dependencies:
-    datatables.net-bs4 ">=2.0.0"
-    datatables.net-colreorder "2.0.0"
-    jquery ">=1.7"
-
-datatables.net-colreorder@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/datatables.net-colreorder/-/datatables.net-colreorder-2.0.0.tgz#957c915cedafb22b55a798de9e557b932e10e1f0"
-  integrity sha512-ZsDHKxisGbdBh2IEb+AC6O3LgkBoibCbdXaZKBK6SBUEul085Zt3NUFmieTljXVkDWdewSLg4IvhkE8zKzQjVQ==
-  dependencies:
-    datatables.net ">=2.0.0"
-    jquery ">=1.7"
-
-datatables.net-fixedcolumns-bs4@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/datatables.net-fixedcolumns-bs4/-/datatables.net-fixedcolumns-bs4-5.0.0.tgz#e63cca7a6239e937423cfc984b1ee854149bcc8c"
-  integrity sha512-qfuW8dpXcObCUMz8X+gwTkyIU3N/k39fkbKAcCkZj2jz9preuyUabjTMUaEyCt2bEjoF+Xx+mhQqf3vorraGHQ==
-  dependencies:
-    datatables.net-bs4 ">=2.0.0"
-    datatables.net-fixedcolumns "5.0.0"
-    jquery ">=1.7"
-
-datatables.net-fixedcolumns@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/datatables.net-fixedcolumns/-/datatables.net-fixedcolumns-5.0.0.tgz#4c8f6d38aecd326ef4505cf7fbbcca8aa3992564"
-  integrity sha512-7dTJrVDkZCicx9g//N3ufuEjvwrZpcmpjbkwrtC5LiQFCnuL/hMOiOb4CBcvTg5OiTU7VmtbBuQkeAJGs3QM5g==
-  dependencies:
-    datatables.net ">=2.0.0"
-    jquery ">=1.7"
-
 datatables.net-responsive-bs4@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/datatables.net-responsive-bs4/-/datatables.net-responsive-bs4-3.0.0.tgz#20f58d19b3e629b134f1bb98abd8c8ba230f5308"
