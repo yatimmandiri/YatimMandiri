@@ -29,4 +29,15 @@ class SettingsController extends Controller
 
         return $cekRekening;
     }
+
+    public function paket(Request $request)
+    {
+        $response = Http::withHeaders([
+            'Accept' => 'application/json',
+            'API-KEY' => env('VIBRANT_APIKEY'),
+        ])->post(env('VIBRANT_URL') . '/api/paket-donasi', [])
+            ->json()['data'];
+
+        return $this->sendResponse($response, 'Get Data Successfully');
+    }
 }

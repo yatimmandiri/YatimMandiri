@@ -27,7 +27,7 @@ class CategoryResource extends JsonResource
             'categories_featureimage' => $this->categories_featureimage,
             'relationship' => [
                 'faqs' => $this->faqs,
-                // 'campaigns' => $this->campaigns,
+                'campaigns' => $this->campaigns,
             ],
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

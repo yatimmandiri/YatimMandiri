@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             // SliderSeeder::class,
             // CategorySeeder::class,
             // FaqSeeder::class,
-            RekeningSeeder::class,
+            // RekeningSeeder::class,
+            // CampaignSeeder::class,
         ]);
     }
 }

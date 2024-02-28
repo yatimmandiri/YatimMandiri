@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\CampaignController as V1CampaignController;
 use App\Http\Controllers\Api\V1\CategoryController as V1CategoryController;
 use App\Http\Controllers\Api\V1\FaqController as V1FaqController;
 use App\Http\Controllers\Api\V1\MenuController as V1MenuController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\Core\RoleController;
 use App\Http\Controllers\Core\UserController;
 use App\Http\Controllers\Core\MenuController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Master\CampaignController;
 use App\Http\Controllers\Master\CategoryController;
 use App\Http\Controllers\Master\FaqController;
 use App\Http\Controllers\Master\RekeningController;
@@ -65,6 +67,12 @@ Route::middleware('auth')->group(function () {
         Route::put('rekenings/populer/{rekening}', [V1RekeningController::class, 'populer'])->name('rekenings.populer');
         Route::put('rekenings/status/{rekening}', [V1RekeningController::class, 'status'])->name('rekenings.status');
         Route::resource('rekenings', V1RekeningController::class);
+
+        Route::put('campaigns/status/{campaign}', [V1CampaignController::class, 'status'])->name('campaigns.status');
+        Route::put('campaigns/recomendation/{campaign}', [V1CampaignController::class, 'recomendation'])->name('campaigns.recomendation');
+        Route::put('campaigns/populer/{campaign}', [V1CampaignController::class, 'populer'])->name('campaigns.populer');
+        Route::put('campaigns/restore/{campaign}', [V1CampaignController::class, 'restore'])->name('campaigns.restore');
+        Route::resource('campaigns', V1CampaignController::class);
     });
 
     Route::prefix('core')->group(function () {
@@ -77,6 +85,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('master')->group(function () {
         Route::resource('sliders', SliderController::class);
         Route::resource('categories', CategoryController::class);
+        Route::resource('campaigns', CampaignController::class);
         Route::resource('faqs', FaqController::class);
         Route::resource('rekenings', RekeningController::class);
     });
@@ -87,6 +96,10 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('moota')->group(function () {
         Route::get('rekenings', [SettingsController::class, 'rekening'])->name('moota.rekening');
+    });
+
+    Route::prefix('sim')->group(function () {
+        Route::get('paket', [SettingsController::class, 'paket'])->name('sim.paket');
     });
 
     Route::prefix('settings')->group(function () {

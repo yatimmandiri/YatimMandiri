@@ -26,4 +26,9 @@ class Category extends Model
     {
         return $this->hasMany(Faq::class, 'categories_id');
     }
+
+    public function campaign()
+    {
+        return $this->hasMany(Campaign::class, 'categories_id');
+    }
 }
