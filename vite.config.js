@@ -20,6 +20,14 @@ export default defineConfig({
                 __dirname,
                 "node_modules/datatables.net-buttons-bs4"
             ),
+            "~datatables-bs5": path.resolve(
+                __dirname,
+                "node_modules/datatables.net-bs5"
+            ),
+            "~datatables-buttons-bs5": path.resolve(
+                __dirname,
+                "node_modules/datatables.net-buttons-bs5"
+            ),
             "~datatables-responsive-bs4": path.resolve(
                 __dirname,
                 "node_modules/datatables.net-responsive-bs4"
