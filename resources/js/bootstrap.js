@@ -7,11 +7,11 @@ import Swal from "sweetalert2";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import moment from "moment";
 import bsCustomFileInput from "bs-custom-file-input";
+import "bootstrap";
 import "datatables.net-bs4";
 import "datatables.net-responsive-bs4";
 import "datatables.net-select-bs4";
 import "datatables.net-buttons-bs4";
-import "bootstrap";
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support

@@ -12,6 +12,9 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     @yield('styles')
+
+    <!-- Datatables Button -->
+    <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}" defer></script>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -70,8 +73,7 @@
     <!-- AdminLTE App -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js" defer></script>
 
-    <!-- Datatables Button -->
-    <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}" defer></script>
+
     @yield('scripts')
 </body>
 

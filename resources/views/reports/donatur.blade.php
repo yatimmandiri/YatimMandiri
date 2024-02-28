@@ -14,8 +14,6 @@
     </div>
 </div>
 
-@include('core.users.show')
-
 {{ $dataTable->scripts() }}
 
 @endsection
