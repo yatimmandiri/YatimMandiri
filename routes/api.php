@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\CampaignController;
 use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\FaqController;
 use App\Http\Controllers\Api\V1\RekeningController;
@@ -27,4 +28,5 @@ Route::prefix('v1')->group(function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('faqs', FaqController::class);
     Route::resource('rekenings', RekeningController::class);
+    Route::resource('campaigns', CampaignController::class);
 });
