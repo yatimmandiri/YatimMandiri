@@ -19,7 +19,7 @@ class SliderResource extends JsonResource
             'slider_name' => $this->slider_name,
             'slider_link' => $this->slider_link,
             'slider_group' => $this->slider_group,
-            'slider_featureimage' => $this->slider_featureimage ? env('APP_STORAGE_URL') . $this->slider_featureimage : null,
+            'slider_featureimage' => $this->slider_featureimage,
             'relationship' => [],
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
