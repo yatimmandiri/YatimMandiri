@@ -106,7 +106,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('report')->group(function () {
         Route::get('donations', [ReportDonasiController::class, 'donations'])->name('report.donation');
-        Route::get('donaturs', [ReportDonasiController::class, 'donaturs'])->name('report.donatur');
+        Route::get('donatur', [ReportDonasiController::class, 'donaturs'])->name('report.donatur');
     });
 
     Route::prefix('moota')->group(function () {
