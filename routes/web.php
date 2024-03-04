@@ -22,6 +22,7 @@ use App\Http\Controllers\Master\FaqController;
 use App\Http\Controllers\Master\RekeningController;
 use App\Http\Controllers\Master\SliderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Reports\ReportDonasiController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Transactions\DonationController;
 use Illuminate\Support\Facades\Auth;
@@ -104,7 +105,8 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('reports')->group(function () {
-        Route::get('donaturs', [UserController::class, 'donaturs'])->name('users.donatur');
+        Route::get('donations', [ReportDonasiController::class, 'donations'])->name('report.donation');
+        Route::get('donaturs', [ReportDonasiController::class, 'donaturs'])->name('report.donatur');
     });
 
     Route::prefix('moota')->group(function () {

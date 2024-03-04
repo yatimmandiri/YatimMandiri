@@ -10,6 +10,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('images/AdminLTELogo.png') }}" />
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" defer></script>
 
     @yield('styles')
 

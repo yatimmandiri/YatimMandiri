@@ -48,6 +48,27 @@ window.ajaxRequest = ({ url, type = "GET", params }) => {
     });
 };
 
+// Moment JS
+window.moment = moment;
+
+// Set Data Date Range
+window.setDateRange = ({ idtag }) => {
+    $(idtag).daterangepicker({
+        startDate: moment().startOf("month"),
+        endDate: moment().endOf("month"),
+        showDropdowns: true,
+        opens: "right",
+        minYear: 2022,
+        autoApply: true,
+        maxSpan: {
+            months: 1,
+        },
+        ranges: {
+            "This Month": [moment().startOf("month"), moment().endOf("month")],
+        },
+    });
+};
+
 // Select2
 Select2(window, jQuery);
 $.fn.select2.defaults.set("theme", "bootstrap-5");
@@ -168,6 +189,11 @@ const Toast = Swal.mixin({
     timer: 5000,
 });
 window.Toast = Toast;
+
+// // Set Data Date Range
+// window.setDateRange = ({ idtag }) => {
+
+// };
 
 // Populer Confirmation
 window.populerConfirmation = function ({ populer, url, methods, tableId }) {

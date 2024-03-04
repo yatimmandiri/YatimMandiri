@@ -19,9 +19,6 @@
                                 <select name="categories" id="categories" class="form-control select2"></select>
                             </div>
                         </div>
-                        <div class="col-lg-12">
-                            <button id="resetDataTable" class="btn btn-sm btn-warning">Clear</button>
-                        </div>
                     </div>
                 </div>
                 {{ $dataTable->table(['class' => 'table table-sm table-hover table-striped'], true) }}

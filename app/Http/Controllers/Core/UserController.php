@@ -80,10 +80,4 @@ class UserController extends Controller
         $user->delete();
         return $this->sendResponse([], 'Delete Data Successfully');
     }
-
-    public function donaturs(DonaturDataTable $datatables)
-    {
-        $data['pageTitle'] = 'Donatur List';
-        return $datatables->render('reports.donatur', $data);
-    }
 }
