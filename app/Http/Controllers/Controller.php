@@ -69,8 +69,8 @@ class Controller extends BaseController
 
     protected function initMidtrans()
     {
-        Config::$serverKey = env('SANBOX_MIDTRANS_SERVER_KEY');
-        Config::$isProduction = false;
+        Config::$serverKey = env('PROD_MIDTRANS_SERVER_KEY');
+        Config::$isProduction = true;
         Config::$isSanitized = true;
         Config::$is3ds = true;
     }
