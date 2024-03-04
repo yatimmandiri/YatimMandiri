@@ -22,6 +22,7 @@ use App\Http\Controllers\Master\RekeningController;
 use App\Http\Controllers\Master\SliderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\Transactions\DonationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +54,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('roles', V1RoleController::class);
         Route::resource('users', V1UserController::class);
         Route::resource('menus', V1MenuController::class);
+
         Route::resource('sliders', V1SliderController::class);
 
         Route::put('categories/populer/{category}', [V1CategoryController::class, 'populer'])->name('categories.populer');
@@ -79,6 +81,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('permissions', PermissionController::class);
         Route::resource('roles', RoleController::class);
         Route::resource('users', UserController::class);
+        Route::put('menus/reorder/{menu}', [MenuController::class, 'menuOrder'])->name('menus.order');
         Route::resource('menus', MenuController::class);
     });
 
@@ -88,6 +91,10 @@ Route::middleware('auth')->group(function () {
         Route::resource('campaigns', CampaignController::class);
         Route::resource('faqs', FaqController::class);
         Route::resource('rekenings', RekeningController::class);
+    });
+
+    Route::prefix('transaction')->group(function () {
+        Route::resource('donations', DonationController::class);
     });
 
     Route::prefix('report')->group(function () {

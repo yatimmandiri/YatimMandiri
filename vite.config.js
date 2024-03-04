@@ -27,6 +27,10 @@ export default defineConfig({
                 __dirname,
                 "node_modules/datatables.net-responsive-bs4"
             ),
+            "~datatables-rowreorder-bs4": path.resolve(
+                __dirname,
+                "node_modules/datatables.net-rowreorder-bs4"
+            ),
             "~datatables-select-bs4": path.resolve(
                 __dirname,
                 "node_modules/datatables.net-select-bs4"

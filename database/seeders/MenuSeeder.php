@@ -20,43 +20,63 @@ class MenuSeeder extends Seeder
                 'menu_link' => '/home',
                 'menu_icon' => 'fas fa-tachometer-alt nav-icons',
                 'menu_parent' => 0,
+                'menu_order' => 1
             ],
             [
                 'menu_name' => 'System Core',
                 'menu_link' => '#',
                 'menu_icon' => 'fab fa-codepen nav-icons',
                 'menu_parent' => 0,
+                'menu_order' => 2
             ],
             [
                 'menu_name' => 'Permission',
                 'menu_link' => '/core/permissions',
                 'menu_icon' => 'fas fa-chevron-right nav-icons',
                 'menu_parent' => 2,
+                'menu_order' => 3
             ],
             [
                 'menu_name' => 'Roles',
                 'menu_link' => '/core/roles',
                 'menu_icon' => 'fas fa-chevron-right nav-icons',
                 'menu_parent' => 2,
+                'menu_order' => 4
             ],
             [
                 'menu_name' => 'Menu',
                 'menu_link' => '/core/menus',
                 'menu_icon' => 'fas fa-chevron-right nav-icons',
                 'menu_parent' => 2,
+                'menu_order' => 5
             ],
             [
                 'menu_name' => 'Management Users',
                 'menu_link' => '/core/users',
                 'menu_icon' => 'fas fa-chevron-right nav-icons',
                 'menu_parent' => 2,
+                'menu_order' => 6
             ],
             [
                 'menu_name' => 'Master Data',
                 'menu_link' => '#',
                 'menu_icon' => 'fas fa-database nav-icons',
                 'menu_parent' => 0,
+                'menu_order' => 7
             ],
+            [
+                'menu_name' => 'Transaksi',
+                'menu_link' => '#',
+                'menu_icon' => 'fas fa-shopping-cart nav-icons',
+                'menu_parent' => 8,
+                'menu_order' => 8
+            ],
+            // [
+            //     'menu_name' => 'Report',
+            //     'menu_link' => '#',
+            //     'menu_icon' => 'fas fa-print nav-icons',
+            //     'menu_parent' => 0,
+            // ],
             // [
             //     'menu_name' => 'Majalah YM',
             //     'menu_link' => '#',

@@ -21,6 +21,7 @@ class RekeningSeeder extends Seeder
             'menu_link' => '/master/rekenings',
             'menu_icon' => 'fas fa-chevron-right nav-icons',
             'menu_parent' => 7,
+            'menu_order' => 12,
         ])->roles()->sync([1, 2]);
 
         collect([

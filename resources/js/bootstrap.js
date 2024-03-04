@@ -67,6 +67,7 @@ window.setDataSelect = ({
 
     $(tagid)
         .select2({
+            allowClear: true,
             placeholder: placeholder,
             data: data,
         })

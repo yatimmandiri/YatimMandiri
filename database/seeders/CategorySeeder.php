@@ -22,6 +22,7 @@ class CategorySeeder extends Seeder
             'menu_link' => '/master/categories',
             'menu_icon' => 'fas fa-chevron-right nav-icons',
             'menu_parent' => 7,
+            'menu_order' => 9,
         ])->roles()->sync([1, 2]);
 
         collect([

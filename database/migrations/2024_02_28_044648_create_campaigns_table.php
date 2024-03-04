@@ -26,6 +26,7 @@ return new class extends Migration
             $table->enum('campaign_status', ['Y', 'N'])->default('Y');
             $table->enum('campaign_populer', ['Y', 'N'])->default('N');
             $table->enum('campaign_recomendation', ['Y', 'N'])->default('N');
+            $table->bigInteger('campaign_views')->default(0);
             $table->foreignId('categories_id')->constrained('categories')->cascadeOnUpdate('cascade')->cascadeOnDelete('cascade');
             $table->timestamps();
             $table->softDeletes();

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('menu_icon')->default('fas fa-chevron-right nav-icons');
             $table->string('menu_link')->default('#');
             $table->integer('menu_parent');
+            $table->integer('menu_order')->default(0);
             $table->timestamps();
         });
 

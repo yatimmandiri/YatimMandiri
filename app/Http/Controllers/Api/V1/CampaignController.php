@@ -78,7 +78,11 @@ class CampaignController extends Controller
      */
     public function show(Campaign $campaign)
     {
+        $campaign->campaign_views = $campaign->campaign_views + 1;
+        $campaign->save();
+
         $campaignsResource = CampaignResource::make($campaign);
+
         return $this->sendResponse($campaignsResource, 'Get Data Successfully');
     }
 

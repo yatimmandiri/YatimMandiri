@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
         Builder::useVite();
 
         View::composer('*', function ($view) {
-            $menu = Menu::where('menu_parent', 0)->get();
+            $menu = Menu::where('menu_parent', 0)->orderBy('menu_order', 'asc')->get();
             $data['menus'] = $menu;
             $view->with($data);
         });

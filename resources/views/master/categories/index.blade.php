@@ -19,7 +19,6 @@
                             <label>Status</label>
                             <div class="form-group">
                                 <select name="status" id="status" class="form-control select2">
-                                    <option value="all">Semua</option>
                                     <option value="Y">Actived</option>
                                     <option value="N">Deactived</option>
                                 </select>
@@ -29,14 +28,10 @@
                             <label>Populer</label>
                             <div class="form-group">
                                 <select name="populer" id="populer" class="form-control select2">
-                                    <option value="all">Semua</option>
                                     <option value="Y">Populer</option>
                                     <option value="N">Not Populer</option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <button id="resetDataTable" class="btn btn-sm btn-warning">Clear</button>
                         </div>
                     </div>
                 </div>
@@ -92,17 +87,6 @@
             table.DataTable().ajax.reload()
         })
 
-        $('#resetDataTable').click(function() {
-            $('#status').val('all')
-            $('#populer').val('all')
-
-            table.on('preXhr.dt', function(e, settings, data) {
-                data.status = 'all';
-                data.populer = 'all';
-            })
-
-            table.DataTable().ajax.reload()
-        })
     })
 </script>
 

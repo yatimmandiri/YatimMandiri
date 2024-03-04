@@ -40,4 +40,10 @@ class SettingsController extends Controller
 
         return $this->sendResponse($response, 'Get Data Successfully');
     }
+
+    public function pageViews(Request $request)
+    {
+        $data = $request->all();
+        return $this->sendResponse([], 'Delete Data Successfully');
+    }
 }

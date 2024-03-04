@@ -21,6 +21,7 @@ class FaqSeeder extends Seeder
             'menu_link' => '/master/faqs',
             'menu_icon' => 'fas fa-chevron-right nav-icons',
             'menu_parent' => 7,
+            'menu_order' => 11,
         ])->roles()->sync([1, 2]);
 
         collect([

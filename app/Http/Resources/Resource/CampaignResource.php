@@ -35,6 +35,7 @@ class CampaignResource extends JsonResource
             'paket_id' => $this->paket_id,
             'categories_id' => $this->categories_id,
             'relationship' => [
+                // 'views' => $this->vistiLogs,
                 // 'total_donation' => $totaldonation,
                 'categories' => $this->categories,
             ],

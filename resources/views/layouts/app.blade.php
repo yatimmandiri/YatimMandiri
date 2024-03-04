@@ -15,6 +15,8 @@
 
     <!-- Datatables Button -->
     <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}" defer></script>
+    <script src="https://cdn.datatables.net/rowreorder/1.5.0/js/dataTables.rowReorder.js" defer></script>
+    <script src="https://cdn.datatables.net/rowreorder/1.5.0/js/rowReorder.bootstrap4.js" defer></script>
 </head>
 
 <body class="hold-transition sidebar-mini">

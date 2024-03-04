@@ -23,4 +23,22 @@
 
 {{ $dataTable->scripts() }}
 
+<script type="module">
+    $(document).ready(function() {
+        var table = $('#menu-table').DataTable()
+
+        table.on('row-reorder', function(e, details, edit) {
+            for (var i = 0; i < details.length; i++) {
+                $.ajax({
+                    url: `/core/menus/reorder/${table.row(details[i].node).data().id}`,
+                    type: 'PUT',
+                    data: {
+                        menu_order: table.row(details[i].newPosition).data().menu_order
+                    }
+                })
+            }
+        });
+    })
+</script>
+
 @endsection

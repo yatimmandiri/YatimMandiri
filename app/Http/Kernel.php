@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\JsonMiddleware;
+use App\Http\Middleware\VerifyApiKey;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Spatie\Permission\Middleware\PermissionMiddleware;
 use Spatie\Permission\Middleware\RoleMiddleware;
@@ -73,5 +74,7 @@ class Kernel extends HttpKernel
         'role' => RoleMiddleware::class,
         'permission' => PermissionMiddleware::class,
         'role_or_permission' => RoleOrPermissionMiddleware::class,
+
+        'auth.apikey' => VerifyApiKey::class,
     ];
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('handphone')->unique();
             $table->integer('kantor_id')->default(53);
+            $table->string('referals')->default('-');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
