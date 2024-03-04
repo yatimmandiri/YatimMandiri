@@ -104,7 +104,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('donations', DonationController::class);
     });
 
-    Route::prefix('reports')->group(function () {
+    Route::prefix('report')->group(function () {
         Route::get('donations', [ReportDonasiController::class, 'donations'])->name('report.donation');
         Route::get('donaturs', [ReportDonasiController::class, 'donaturs'])->name('report.donatur');
     });
