@@ -17,14 +17,6 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Menu::create([
-            'menu_name' => 'Categories',
-            'menu_link' => '/master/categories',
-            'menu_icon' => 'fas fa-chevron-right nav-icons',
-            'menu_parent' => 7,
-            'menu_order' => 9,
-        ])->roles()->sync([1, 2]);
-
         collect([
             ['name' => 'view-category'],
             ['name' => 'create-category'],

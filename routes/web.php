@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\CampaignController as V1CampaignController;
 use App\Http\Controllers\Api\V1\CategoryController as V1CategoryController;
+use App\Http\Controllers\Api\V1\DonationController as V1DonationController;
 use App\Http\Controllers\Api\V1\FaqController as V1FaqController;
 use App\Http\Controllers\Api\V1\MenuController as V1MenuController;
 use App\Http\Controllers\Api\V1\PermissionController as V1PermissionController;
@@ -75,6 +76,11 @@ Route::middleware('auth')->group(function () {
         Route::put('campaigns/populer/{campaign}', [V1CampaignController::class, 'populer'])->name('campaigns.populer');
         Route::put('campaigns/restore/{campaign}', [V1CampaignController::class, 'restore'])->name('campaigns.restore');
         Route::resource('campaigns', V1CampaignController::class);
+
+        Route::post('donations/getTotalNominalByStatus', [V1DonationController::class, 'getTotalNominalByStatus'])->name('donations.getTotalNominalByStatus');
+        Route::post('donations/getTotalCountByStatus', [V1DonationController::class, 'getTotalCountByStatus'])->name('donations.getTotalCountByStatus');
+        Route::post('donations/checkStatus', [V1DonationController::class, 'checkStatus'])->name('donations.checkStatus');
+        Route::resource('donations', V1DonationController::class);
     });
 
     Route::prefix('core')->group(function () {
@@ -97,8 +103,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('donations', DonationController::class);
     });
 
-    Route::prefix('report')->group(function () {
-        Route::get('donatur', [UserController::class, 'donaturs'])->name('users.donatur');
+    Route::prefix('reports')->group(function () {
+        Route::get('donaturs', [UserController::class, 'donaturs'])->name('users.donatur');
     });
 
     Route::prefix('moota')->group(function () {

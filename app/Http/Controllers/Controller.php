@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Http;
+use Midtrans\Config;
 
 class Controller extends BaseController
 {
@@ -49,5 +50,28 @@ class Controller extends BaseController
                 'whatsapp' => $whatsapp
             ])
             ->json();
+    }
+
+    public function sendWhatsapp($handphone, $messages)
+    {
+        $credentials = [
+            'sender' => '6285784820928',
+            'number' => $handphone,
+            'message' => $messages,
+            'api_key' => 'qhWHn3Xbak7Fy3pNnUvFAcKTU8huHh',
+        ];
+
+        $response = Http::post('https://apiwa.yatimmandiri.org/send-message', $credentials)
+            ->json();
+
+        return $response;
+    }
+
+    protected function initMidtrans()
+    {
+        Config::$serverKey = env('SANBOX_MIDTRANS_SERVER_KEY');
+        Config::$isProduction = false;
+        Config::$isSanitized = true;
+        Config::$is3ds = true;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Resource;
 
+use App\Models\Donation;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -14,9 +15,9 @@ class CampaignResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        // $totaldonation = Donation::where('donation_status', 'Success')
-        //     ->where('campaign_id', $this->id)
-        //     ->sum(DB::raw('donation_quantity * donation_nominaldonasi + donation_uniknominal'));
+        $totaldonation = Donation::where('donation_status', 'Success')
+            ->where('campaign_id', $this->id)
+            ->selectRaw('SUM(donation_quantity * donation_nominaldonasi + donation_uniknominal) as totaldonation');
 
         return [
             'id' => $this->id,
@@ -35,9 +36,9 @@ class CampaignResource extends JsonResource
             'paket_id' => $this->paket_id,
             'categories_id' => $this->categories_id,
             'relationship' => [
-                // 'views' => $this->vistiLogs,
-                // 'total_donation' => $totaldonation,
+                'views' => $this->campaign_views,
                 'categories' => $this->categories,
+                'total_donation' => $totaldonation,
             ],
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

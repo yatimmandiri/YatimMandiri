@@ -45,7 +45,7 @@ class UserRolePermissionSeeder extends Seeder
             'kode_user' => 53  . date('Yms') . random_int(10, 99),
             'name' => 'Yatim Mandiri',
             'email' => 'scrum@yatimmandiri.org',
-            'handphone' => '6289676667010',
+            'handphone' => '089676667010',
             'email_verified_at' => now(),
             'kantor_id' => 53,
             'password' => Hash::make('admin'), // password

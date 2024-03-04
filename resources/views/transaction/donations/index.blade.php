@@ -6,10 +6,10 @@
         <div class="card card-outline card-primary">
             <div class="card-header">
                 <h3 class="card-title">{{$pageTitle}}</h3>
-                <div class="card-tools">
+                <!-- <div class="card-tools">
                     <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalCreateDonation"><i class="fa fa-plus"></i></button>
-                    <!-- <button id="checkStatus" class="btn btn-warning btn-sm"><i class="fa fa-rotate"></i></button> -->
-                </div>
+                    <button id="checkStatus" class="btn btn-warning btn-sm"><i class="fa fa-rotate"></i></button>
+                </div> -->
             </div>
             <div class="card-body">
                 <div class="card card-primary card-outline">
@@ -18,7 +18,6 @@
                             <label>Status</label>
                             <div class="form-group">
                                 <select name="status" id="status" class="form-control select2">
-                                    <option value="all">Semua</option>
                                     <option value="Pending">Pending</option>
                                     <option value="Success">Success</option>
                                     <option value="Expired">Expired</option>
@@ -30,9 +29,6 @@
                             <div class="form-group">
                                 <select name="zisco" id="zisco" class="form-control select2"></select>
                             </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <button id="resetDataTable" class="btn btn-sm btn-warning">Clear</button>
                         </div>
                     </div>
                 </div>

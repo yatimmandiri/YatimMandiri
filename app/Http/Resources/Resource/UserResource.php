@@ -24,6 +24,7 @@ class UserResource extends JsonResource
             'referals' => $this->referals,
             'relationship' => [
                 'roles' => $this->roles,
+                'donations' => $this->donations
             ],
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at

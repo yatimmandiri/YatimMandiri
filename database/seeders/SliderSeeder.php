@@ -16,14 +16,6 @@ class SliderSeeder extends Seeder
      */
     public function run(): void
     {
-        Menu::create([
-            'menu_name' => 'Slider',
-            'menu_link' => '/master/sliders',
-            'menu_icon' => 'fas fa-chevron-right nav-icons',
-            'menu_parent' => 7,
-            'menu_order' => 13,
-        ])->roles()->sync([1, 2]);
-
         collect([
             ['name' => 'view-slider'],
             ['name' => 'create-slider'],

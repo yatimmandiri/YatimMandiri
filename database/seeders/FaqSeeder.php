@@ -16,14 +16,6 @@ class FaqSeeder extends Seeder
      */
     public function run(): void
     {
-        Menu::create([
-            'menu_name' => 'Faq',
-            'menu_link' => '/master/faqs',
-            'menu_icon' => 'fas fa-chevron-right nav-icons',
-            'menu_parent' => 7,
-            'menu_order' => 11,
-        ])->roles()->sync([1, 2]);
-
         collect([
             ['name' => 'view-faq'],
             ['name' => 'create-faq'],

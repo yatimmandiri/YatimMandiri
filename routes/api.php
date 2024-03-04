@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\Api\V1\CampaignController;
 use App\Http\Controllers\Api\V1\CategoryController;
+use App\Http\Controllers\Api\V1\DonationController;
 use App\Http\Controllers\Api\V1\FaqController;
 use App\Http\Controllers\Api\V1\RekeningController;
 use App\Http\Controllers\Api\V1\SliderController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,4 +31,9 @@ Route::prefix('v1')->group(function () {
     Route::resource('faqs', FaqController::class);
     Route::resource('rekenings', RekeningController::class);
     Route::resource('campaigns', CampaignController::class);
+    Route::resource('donations', DonationController::class);
+});
+
+Route::prefix('payments')->group(function () {
+    Route::post('notifications', [SettingsController::class, 'notifications'])->name('midtrans.notifications');
 });

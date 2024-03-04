@@ -28,6 +28,7 @@ return new class extends Migration
             $table->enum('donation_status', ['Pending', 'Success', 'Expired'])->default('Pending');
             $table->enum('donation_hambaallah', ['Y', 'N'])->default('N');
             $table->enum('donation_sync', ['Y', 'N'])->default('N');
+            $table->dateTime('donation_expired')->nullable();
             $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate('cascade')->cascadeOnDelete('cascade');
             $table->foreignId('campaign_id')->constrained('campaigns')->cascadeOnUpdate('cascade')->cascadeOnDelete('cascade');
             $table->foreignId('rekening_id')->constrained('rekenings')->cascadeOnUpdate('cascade')->cascadeOnDelete('cascade');

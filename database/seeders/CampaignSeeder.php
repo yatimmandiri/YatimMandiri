@@ -16,14 +16,6 @@ class CampaignSeeder extends Seeder
      */
     public function run(): void
     {
-        Menu::create([
-            'menu_name' => 'Campaigns',
-            'menu_link' => '/master/campaigns',
-            'menu_icon' => 'fas fa-chevron-right nav-icons',
-            'menu_parent' => 7,
-            'menu_order' => 10,
-        ])->roles()->sync([1, 2]);
-
         collect([
             ['name' => 'view-campaign'],
             ['name' => 'create-campaign'],
