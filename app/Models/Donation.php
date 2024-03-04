@@ -26,6 +26,7 @@ class Donation extends Model
         'donation_status',
         'donation_hambaallah',
         'donation_sync',
+        'donation_expired',
         'user_id',
         'campaign_id',
         'rekening_id',

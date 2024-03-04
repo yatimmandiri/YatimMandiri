@@ -14,13 +14,7 @@ class DonationSeeder extends Seeder
      */
     public function run(): void
     {
-        Menu::create([
-            'menu_name' => 'Donations',
-            'menu_link' => '/transaction/donations',
-            'menu_icon' => 'fas fa-chevron-right nav-icons',
-            'menu_parent' => 8,
-            'menu_order' => 14,
-        ])->roles()->sync([1, 2]);
+        // Menu::create()->roles()->sync([1, 2]);
 
         collect([
             ['name' => 'view-donations'],
