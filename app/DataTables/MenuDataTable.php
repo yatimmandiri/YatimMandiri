@@ -47,7 +47,7 @@ class MenuDataTable extends DataTable
     {
         return $model
             ->newQuery()
-            ->orderBy('id', 'desc');
+            ->orderBy('menu_order', 'desc');
     }
 
     /**
@@ -62,6 +62,22 @@ class MenuDataTable extends DataTable
             ->selectStyleSingle()
             ->responsive(true)
             ->autoWidth(true)
+            // ->parameters(
+            //     [
+            //         'rowReorder' => [
+            //             // 'selector' => 'td:nth-child(2)',
+            //             'dataSrc' => 'sortable',
+            //             'update' => false
+            //         ]
+            //     ]
+            // )
+            ->rowReorderDataSrc(0)
+            ->rowReorderSelector('tr.td:nth-child(2)')
+            ->rowReorderUpdate(false)
+            ->rowReorder(true)
+            // ->rowReorderUpdate()
+            // ->rowReorderDataSrc('sequence')
+            // ->rowReorderEnable(true)
             ->lengthMenu([50, 100, 250, 500])
             ->orderBy(1);
     }

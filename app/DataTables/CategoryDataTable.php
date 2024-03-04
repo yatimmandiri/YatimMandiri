@@ -149,12 +149,12 @@ class CategoryDataTable extends DataTable
     {
         return [
             Column::make('DT_RowIndex')->title('No')->searchable(false)->orderable(false),
-            Column::make('categories_name'),
-            Column::make('categories_slug'),
-            Column::computed('categories_icon'),
-            Column::computed('categories_featureimage'),
-            Column::computed('categories_populer'),
-            Column::computed('categories_status'),
+            Column::make('categories_name')->title('Name'),
+            Column::make('categories_slug')->title('Slug'),
+            // Column::computed('categories_icon'),
+            // Column::computed('categories_featureimage'),
+            Column::computed('categories_populer')->title('Populer'),
+            Column::computed('categories_status')->title('Status'),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::computed('action')->addClass('text-center'),
