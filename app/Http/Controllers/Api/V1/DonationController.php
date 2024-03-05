@@ -10,10 +10,15 @@ use App\Models\Campaign;
 use App\Models\Donation;
 use App\Models\Rekening;
 use App\Models\User;
+use DateInterval;
+use DatePeriod;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Midtrans\CoreApi;
+use Midtrans\Transaction;
 
 class DonationController extends Controller
 {
@@ -279,5 +284,195 @@ class DonationController extends Controller
     public function destroy(Donation $donation)
     {
         //
+    }
+
+    public function getTotalCountByStatus(Request $request)
+    {
+        $countGroupByDate = [];
+        $count_pending_array = [];
+        $count_success_array = [];
+        $count_expired_array = [];
+
+        $countPending = Donation::where('donation_status', 'Pending')
+            ->when($request->referals != '-', function ($q) use ($request) {
+                $q->where('donation_referals', $request->referals);
+            })
+            ->whereBetween('created_at', [$request->startDate, $request->endDate])
+            ->count();
+        $countExpired = Donation::where('donation_status', 'Expired')
+            ->when($request->referals != '-', function ($q) use ($request) {
+                $q->where('donation_referals', $request->referals);
+            })
+            ->whereBetween('created_at', [$request->startDate, $request->endDate])
+            ->count();
+        $countSuccess = Donation::where('donation_status', 'Success')
+            ->when($request->referals != '-', function ($q) use ($request) {
+                $q->where('donation_referals', $request->referals);
+            })
+            ->whereBetween('created_at', [$request->startDate, $request->endDate])
+            ->count();
+
+
+        $interval = new DateInterval('P1D');
+        $realEnd = new DateTime($request->endDate);
+        $realEnd->add($interval);
+
+        $period = new DatePeriod(new DateTime($request->startDate), $interval, $realEnd);
+
+        foreach ($period as $date) {
+            $array = Donation::where(DB::raw("(DATE_FORMAT(created_at,'%Y-%m-%d'))"), $date->format('Y-m-d'))
+                ->when($request->referals != '-', function ($q) use ($request) {
+                    $q->where('donation_referals', $request->referals);
+                })
+                ->count();
+
+            array_push($countGroupByDate, $array);
+        }
+
+        foreach ($period as $date) {
+            $pending =  Donation::where('donation_status', 'Pending')
+                ->when($request->referals != '-', function ($q) use ($request) {
+                    $q->where('donation_referals', $request->referals);
+                })
+                ->where(DB::raw("(DATE_FORMAT(created_at,'%Y-%m-%d'))"), $date->format('Y-m-d'))
+                ->count();
+            $success =  Donation::where('donation_status', 'Success')
+                ->when($request->referals != '-', function ($q) use ($request) {
+                    $q->where('donation_referals', $request->referals);
+                })
+                ->where(DB::raw("(DATE_FORMAT(created_at,'%Y-%m-%d'))"), $date->format('Y-m-d'))
+                ->count();
+            $expired =  Donation::where('donation_status', 'Expired')
+                ->when($request->referals != '-', function ($q) use ($request) {
+                    $q->where('donation_referals', $request->referals);
+                })
+                ->where(DB::raw("(DATE_FORMAT(created_at,'%Y-%m-%d'))"), $date->format('Y-m-d'))
+                ->count();
+
+            array_push($count_pending_array, $pending);
+            array_push($count_success_array, $success);
+            array_push($count_expired_array, $expired);
+        }
+
+        $response = [
+            'count_pending' => $countPending,
+            'count_expired' => $countExpired,
+            'count_success' => $countSuccess,
+            'countGroupByDate' => $countGroupByDate,
+            'count_pending_array' => $count_pending_array,
+            'count_success_array' => $count_success_array,
+            'count_expired_array' => $count_expired_array,
+        ];
+
+        return $this->sendResponse($response, 'Get Data Successfully');
+    }
+
+    public function getTotalNominalByStatus(Request $request)
+    {
+        $nominalGroupByDate = [];
+        $nominal_pending_array = [];
+        $nominal_success_array = [];
+        $nominal_expired_array = [];
+
+        $nominalPending = Donation::where('donation_status', 'Pending')
+            ->when($request->referals != '-', function ($q) use ($request) {
+                $q->where('donation_referals', $request->referals);
+            })
+            ->whereBetween('created_at', [$request->startDate, $request->endDate])
+            ->sum(DB::raw('donation_quantity * donation_nominaldonasi + donation_uniknominal'));
+        $nominalExpired = Donation::where('donation_status', 'Expired')
+            ->when($request->referals != '-', function ($q) use ($request) {
+                $q->where('donation_referals', $request->referals);
+            })
+            ->whereBetween('created_at', [$request->startDate, $request->endDate])
+            ->sum(DB::raw('donation_quantity * donation_nominaldonasi + donation_uniknominal'));
+        $nominalSuccess = Donation::where('donation_status', 'Success')
+            ->when($request->referals != '-', function ($q) use ($request) {
+                $q->where('donation_referals', $request->referals);
+            })
+            ->whereBetween('created_at', [$request->startDate, $request->endDate])
+            ->sum(DB::raw('donation_quantity * donation_nominaldonasi + donation_uniknominal'));
+
+        $interval = new DateInterval('P1D');
+        $realEnd = new DateTime($request->endDate);
+        $realEnd->add($interval);
+
+        $period = new DatePeriod(new DateTime($request->startDate), $interval, $realEnd);
+
+        foreach ($period as $date) {
+            $array = Donation::where(DB::raw("(DATE_FORMAT(created_at,'%Y-%m-%d'))"), $date->format('Y-m-d'))
+                ->when($request->referals != '-', function ($q) use ($request) {
+                    $q->where('donation_referals', $request->referals);
+                })
+                ->sum(DB::raw('donation_quantity * donation_nominaldonasi + donation_uniknominal'));
+            array_push($nominalGroupByDate, $array);
+        }
+
+        foreach ($period as $date) {
+
+            $pending = Donation::where('donation_status', 'Pending')
+                ->when($request->referals != '-', function ($q) use ($request) {
+                    $q->where('donation_referals', $request->referals);
+                })
+                ->where(DB::raw("(DATE_FORMAT(created_at,'%Y-%m-%d'))"), $date->format('Y-m-d'))
+                ->sum(DB::raw('donation_quantity * donation_nominaldonasi + donation_uniknominal'));
+            $success =  Donation::where('donation_status', 'Success')
+                ->when($request->referals != '-', function ($q) use ($request) {
+                    $q->where('donation_referals', $request->referals);
+                })
+                ->where(DB::raw("(DATE_FORMAT(created_at,'%Y-%m-%d'))"), $date->format('Y-m-d'))
+                ->sum(DB::raw('donation_quantity * donation_nominaldonasi + donation_uniknominal'));
+            $expired = Donation::where('donation_status', 'Expired')
+                ->when($request->referals != '-', function ($q) use ($request) {
+                    $q->where('donation_referals', $request->referals);
+                })
+                ->where(DB::raw("(DATE_FORMAT(created_at,'%Y-%m-%d'))"), $date->format('Y-m-d'))
+                ->sum(DB::raw('donation_quantity * donation_nominaldonasi + donation_uniknominal'));
+
+            array_push($nominal_pending_array, $pending);
+            array_push($nominal_success_array, $success);
+            array_push($nominal_expired_array, $expired);
+        }
+
+        $response = [
+            'nominal_pending' => $nominalPending,
+            'nominal_expired' => $nominalExpired,
+            'nominal_success' => $nominalSuccess,
+            'nominalGroupByDate' => $nominalGroupByDate,
+            'nominal_pending_array' => $nominal_pending_array,
+            'nominal_success_array' => $nominal_success_array,
+            'nominal_expired_array' => $nominal_expired_array,
+        ];
+
+        return $this->sendResponse($response, 'Get Data Successfully');
+    }
+
+    public function checkStatus()
+    {
+        $this->initMidtrans();
+        $donations = Donation::all();
+
+        foreach ($donations as $key) {
+            $status = Transaction::status($key->donation_notransaksi);
+            $donations = Donation::where('donation_notransaksi', $key->donation_notransaksi)->first();
+            $transaction = $status['transaction_status'];
+
+            switch ($transaction) {
+                case 'settlement':
+                    $donations->donation_status = "Success";
+                    $donations->save();
+                    break;
+                case 'pending':
+                    $donations->donation_status = "Pending";
+                    $donations->save();
+                    break;
+                default:
+                    $donations->donation_status = "Expired";
+                    $donations->save();
+                    break;
+            }
+        }
+
+        return $this->sendResponse('Success', 'Payment Successfully');
     }
 }

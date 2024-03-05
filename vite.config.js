@@ -40,6 +40,7 @@ export default defineConfig({
                 __dirname,
                 "node_modules/select2-bootstrap-5-theme"
             ),
+            "~sweetalert2": path.resolve(__dirname, "node_modules/sweetalert2"),
         },
     },
 });

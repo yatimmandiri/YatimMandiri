@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import moment from "moment";
 import bsCustomFileInput from "bs-custom-file-input";
+import Chart, { Colors } from "chart.js/auto";
 import "bootstrap";
 import "datatables.net-bs4";
 import "datatables.net-responsive-bs4";
@@ -51,6 +52,15 @@ window.ajaxRequest = ({ url, type = "GET", params }) => {
 // Moment JS
 window.moment = moment;
 
+// Select2
+Select2(window, jQuery);
+$.fn.select2.defaults.set("theme", "bootstrap-5");
+$.fn.select2.defaults.set("width", "100%");
+
+// ChartJS
+window.Chart = Chart;
+Chart.register(Colors);
+
 // Set Data Date Range
 window.setDateRange = ({ idtag }) => {
     $(idtag).daterangepicker({
@@ -68,11 +78,6 @@ window.setDateRange = ({ idtag }) => {
         },
     });
 };
-
-// Select2
-Select2(window, jQuery);
-$.fn.select2.defaults.set("theme", "bootstrap-5");
-$.fn.select2.defaults.set("width", "100%");
 
 // Set Data Select2
 window.setDataSelect = ({
